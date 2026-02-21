@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseMind AI - Combat Burnout, Find Your Calm</title>
+    <meta name="description" content="PulseMind AI is an AI-powered wellness app for young professionals in India, tracking stress from calendar/email patterns and suggesting quick mindfulness exercises to combat burnout.">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Basic Reset & Base Styles */
+        :root {
+            --primary-color: #4CAF50; /* A calming green */
+            --secondary-color: #2196F3; /* A vibrant blue */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-light: #f9f9f9;
+            --background-dark: #e0e0e0;
+            --white: #fff;
+            --border-color: #ddd;
+            --spacing-unit: 1rem;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background-color: #43a047; /* Darker green */
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #1976d2; /* Darker blue */
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--white);
+            padding: var(--spacing-unit) 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--background-light), var(--background-dark));
+            padding: 4rem var(--spacing-unit);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh; /* Ensure it takes up significant viewport height */
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--light-text-color);
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 4rem var(--spacing-unit);
+            background-color: var(--white);
+        }
+
+        .section:nth-of-type(even) {
+            background-color: var(--background-light);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .feature-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .feature-item h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-item p {
+            color: var(--light-text-color);
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 4rem var(--spacing-unit);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .btn {
+            background-color: var(--white);
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        .cta-section .btn:hover {
+            background-color: var(--background-light);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--text-color);
+            color: var(--white);
+            padding: 2rem var(--spacing-unit);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .hero {
+                padding: 6rem var(--spacing-unit);
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero p {
+                font-size: 1.4rem;
+            }
+
+            .section {
+                padding: 6rem var(--spacing-unit);
+            }
+
+            .section h2 {
+                font-size: 2.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-section {
+                padding: 6rem var(--spacing-unit);
+            }
+
+            .cta-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-section p {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 8rem var(--spacing-unit);
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">PulseMind AI</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Combat Corporate Burnout. Find Your Calm with PulseMind AI.</h1>
+                <p>The intelligent wellness app for India's young professionals, tracking stress and guiding you to lasting calm.</p>
+                <a href="#" class="btn">Start Your 7-Day Free Trial</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Are You Battling Burnout?</h2>
+                <p>The relentless pace of corporate life in India, long hours, and constant pressure often leave little room for self-care. This leads to chronic stress, exhaustion, and a feeling of being overwhelmed. You're not alone in facing this silent epidemic.</p>
+                <p>Traditional wellness solutions often don't fit into your demanding schedule, making accessible and effective stress management a critical need for young professionals like you.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Your Personal AI Wellness Coach, Always On-Call.</h2>
+                <p>Introducing PulseMind AI: Your Smart Companion Against Stress. We leverage cutting-edge AI to discreetly analyze your calendar and email patterns, identifying early signs of stress before they escalate. Then, we deliver short, effective mindfulness exercises directly to your phone, perfectly timed for your busy schedule.</p>
+                <p>It's personalized, proactive, and designed to seamlessly integrate into your day, helping you reclaim focus, energy, and peace of mind.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>How PulseMind AI Empowers Your Well-being</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>Personalized Stress Insights</h3>
+                        <p>Understand your unique stress triggers with AI-driven analysis of your digital footprint. Get proactive alerts and insights tailored to your work patterns.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Quick Mindfulness Breaks</h3>
+                        <p>Access a library of guided meditations and breathing exercises, designed to fit into your coffee break or commute. Just 5 minutes can make a significant difference.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Mobile-First & Seamless</h3>
+                        <p>Your wellness journey, optimized for your smartphone. Intuitive design ensures a smooth, distraction-free experience wherever you are in India.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Proactive Burnout Prevention</h3>
+                        <p>Our AI identifies potential stress spikes before they happen, giving you tools to intervene early and prevent full-blown burnout.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Data Privacy & Security</h3>
+                        <p>Your data is handled with the utmost care and privacy. We focus on patterns, not content, ensuring your personal information remains secure.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Corporate Wellness Partner</h3>
+                        <p>Elevate your team's well-being. Partner with PulseMind AI to offer a proactive stress management solution that boosts productivity and reduces absenteeism.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Transform Your Well-being?</h2>
+                <p>Join thousands of professionals in India who are already reclaiming their calm and boosting their productivity with PulseMind AI. Take the first step towards a healthier, happier you.</p>
+                <a href="#" class="btn">Download PulseMind AI & Start Free</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+            <p>&copy; 2023 PulseMind AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
